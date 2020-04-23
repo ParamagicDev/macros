@@ -1,16 +1,6 @@
-// const express = require('express')
-// const bodyParser = require('body-parser')
-// const cors = require('cors')
 const mongoose = require('mongoose')
 
-// const app = express()
-// const PORT = process.env.PORT || 5000
-
-// app.use(bodyParser.json())
-// app.use(cors())
-
-// app.listen(PORT, () => console.log(`server started successfully on ${PORT}`))
-
+// process.env.MONGODB_URI is what heroku uses to find mongodb
 const dburi =
   process.env.MONGODB_URI ||
   'mongodb+srv://josh:josh123@macrosocial-yeplw.mongodb.net/test?retryWrites=true&w=majority'
@@ -37,6 +27,9 @@ const handle = app.getRequestHandler()
 
 app.prepare().then(() => {
   const server = express()
+
+  server.use(cors())
+  server.use(bodyParse.json())
 
   server.get('/foodposts', (req, res) => {
     return app.render(req, res, '/foodposts', req.query)
