@@ -25,10 +25,13 @@ const handle = app.getRequestHandler()
 // app.use('/users', userRoutes)
 // app.use('/searchposts', searchPostsRoutes)
 
+const cors = require('cors')
+const bodyParser = require('body-parser')
+
 const server = express()
 
 server.use(cors())
-server.use(bodyParse.json())
+server.use(bodyParser.json())
 
 app.prepare().then(() => {
   server.get('/foodposts', (req, res) => {
