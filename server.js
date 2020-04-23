@@ -25,12 +25,12 @@ const handle = app.getRequestHandler()
 // app.use('/users', userRoutes)
 // app.use('/searchposts', searchPostsRoutes)
 
+const server = express()
+
+server.use(cors())
+server.use(bodyParse.json())
+
 app.prepare().then(() => {
-  const server = express()
-
-  server.use(cors())
-  server.use(bodyParse.json())
-
   server.get('/foodposts', (req, res) => {
     return app.render(req, res, '/foodposts', req.query)
   })
